@@ -28,13 +28,13 @@ DataRouter.get("/get/:id", async (req: Request, res: Respose) => {
 
 //POST
 DataRouter.post("/", async(req:Request, res:Respose)=>{
-    const newUser: Userdata = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        age: req.body.age
-    }
+    // const newUser: Userdata = {
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     age: req.body.age
+    // }
     try{
-        const result = await upost(newUser);
+        const result = await upost(req.body);
         res.status(200).json(result)
     } catch (error){
         //logger
@@ -53,10 +53,10 @@ DataRouter.delete('/data/:id', async(req:Request, res:Respose)=>
 //PUT
 DataRouter.put('/data/:id', async(req:Request, res:Respose)=>{ 
     let updateid:number = Number(req.params.id)
-    let updated:Userdata = req.body
+    // let updated:Userdata = req.body
     try{
         // console.log(updated)
-         const updatedArray = await update(updateid, updated)
+         const updatedArray = await update(updateid, req.body)
          res.status(200).json({message:"update success", data:updatedArray})
     }catch(error){
         res.json(error)

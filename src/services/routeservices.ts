@@ -29,6 +29,7 @@ export const upost = (item: Userdata) => {
     })
     if (D)
 await datarepository.remove(D)
+return Promise.resolve(findAll())
   }
 
   //update
@@ -37,6 +38,7 @@ await datarepository.remove(D)
     const Updateuser = await datarepository.findOneBy({
       id: updateid,
     })
+    console.log(Updateuser)
     if (Updateuser)
     {
       Updateuser.firstName=u.firstName,
@@ -44,4 +46,5 @@ await datarepository.remove(D)
       Updateuser.age = u.age
     }
     await datarepository.save(Updateuser)
+    return Promise.resolve(findAll())
   }
