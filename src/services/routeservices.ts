@@ -38,14 +38,14 @@ return Promise.resolve(findAll())
     const Updateuser = await AppDataSource.getRepository(User).findOneBy({
       id: updateid,
     })
-    // findByID()
-    console.log(Updateuser)
-    if (Updateuser)
-    {
-      Updateuser.firstName=u.firstName,
-      Updateuser.lastName = u.lastName,
-      Updateuser.age = u.age
-    }
-    await AppDataSource.getRepository(User).save(Updateuser)
+    // console.log(Updateuser)
+    await AppDataSource.getRepository(User).update(updateid, u)
     return Promise.resolve(findAll())
+    // if (Updateuser)
+    // {
+    //   Updateuser.firstName=u.firstName,
+    //   Updateuser.lastName = u.lastName,
+    //   Updateuser.age = u.age
+    // }
+    // await AppDataSource.getRepository(User).save(Updateuser)
   }
